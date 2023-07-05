@@ -15,9 +15,7 @@ import 'package:store_web/module_auth/authoriazation_module.dart';
 import 'package:store_web/module_splash/splash_module.dart';
 import 'package:store_web/module_theme/service/theme_service/theme_service.dart';
 import 'package:store_web/utils/logger/logger.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -46,9 +44,7 @@ void main() async {
   await Firebase.initializeApp();
   if (kIsWeb) {
   } else {
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
     FlutterError.onError = (FlutterErrorDetails details) {
-      FirebaseCrashlytics.instance.recordFlutterError(details);
     };
   }
   await SystemChrome.setPreferredOrientations([
@@ -84,9 +80,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  static FirebaseAnalyticsObserver observer =
-      FirebaseAnalyticsObserver(analytics: analytics);
+
   late String lang;
   late ThemeData activeTheme;
   bool authorized = false;
@@ -145,7 +139,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       child: MaterialApp(
         scrollBehavior: MyCustomScrollBehavior(),
         debugShowCheckedModeBanner: false,
-        navigatorObservers: <NavigatorObserver>[observer],
         navigatorKey: GlobalVariable.navState,
         locale: Locale.fromSubtags(
           languageCode: lang,

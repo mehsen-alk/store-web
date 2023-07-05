@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 
@@ -36,13 +35,7 @@ class Logger {
       );
     }
     if (!kIsWeb) {
-      FirebaseCrashlytics.instance.recordError(
-        '$time: \t $tag \t $msg',
-        trace,
-        printDetails: false,
-      );
-      // FirebaseCrashlytics.instance.log('$time: \t $tag \t $msg');
-      FirebaseCrashlytics.instance.sendUnsentReports();
+
     }
   }
 
