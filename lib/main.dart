@@ -1,30 +1,17 @@
-// ignore_for_file: unused_field
 import 'dart:async';
 import 'dart:io' as p;
-import 'package:store_web/module_about/about_module.dart';
-import 'package:store_web/module_bidorder/bid_orders_module.dart';
-import 'package:store_web/module_branches/branches_module.dart';
-import 'package:store_web/module_chat/chat_routes.dart';
-import 'package:store_web/module_chat/model/chat_argument.dart';
-import 'package:store_web/module_my_notifications/my_notifications_module.dart';
-import 'package:store_web/module_notifications/model/notification_model.dart';
-import 'package:store_web/module_orders/orders_module.dart';
-import 'package:store_web/module_profile/module_profile.dart';
-import 'package:store_web/module_subscription/subscriptions_module.dart';
+
 import 'package:device_info/device_info.dart';
 import 'package:injectable/injectable.dart';
+import 'package:store_web/global_nav_key.dart';
 import 'package:store_web/utils/effect/scroll_behavior.dart';
 import 'package:store_web/utils/global/global_state_manager.dart';
 import 'package:simple_moment/simple_moment.dart';
 import 'package:store_web/abstracts/module/yes_module.dart';
 import 'package:store_web/di/di_config.dart';
-import 'package:store_web/global_nav_key.dart';
 import 'package:store_web/hive/hive_init.dart';
 import 'package:store_web/module_auth/authoriazation_module.dart';
-import 'package:store_web/module_chat/chat_module.dart';
-import 'package:store_web/module_localization/service/localization_service/localization_service.dart';
-import 'package:store_web/module_notifications/service/fire_notification_service/fire_notification_service.dart';
-import 'package:store_web/module_settings/settings_module.dart';
+
 import 'package:store_web/module_splash/splash_module.dart';
 import 'package:store_web/module_theme/service/theme_service/theme_service.dart';
 import 'package:store_web/utils/logger/logger.dart';
@@ -35,7 +22,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
-import 'module_notifications/service/local_notification_service/local_notification_service.dart';
 import 'module_splash/splash_routes.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:feature_discovery/feature_discovery.dart';
@@ -84,37 +70,14 @@ void main() async {
 
 @injectable
 class MyApp extends StatefulWidget {
-  final AppThemeDataService _themeDataService;
-  final LocalizationService _localizationService;
-  final FireNotificationService _fireNotificationService;
-  final LocalNotificationService _localNotificationService;
+
   final SplashModule _splashModule;
   final AuthorizationModule _authorizationModule;
-  final SettingsModule _settingsModule;
-  final ChatModule _chatModule;
-  final AboutModule _aboutModule;
-  final ProfileModule _profileModule;
-  final SubscriptionsModule _subscriptionsModule;
-  final BranchesModule _branchesModule;
-  final OrdersModule _ordersModule;
-  final MyNotificationsModule _myNotificationsModule;
-  final BidOrdersModule _bidOrdersModule;
+
   const MyApp(
-      this._ordersModule,
-      this._themeDataService,
-      this._localizationService,
-      this._fireNotificationService,
-      this._localNotificationService,
+ 
       this._splashModule,
-      this._authorizationModule,
-      this._chatModule,
-      this._settingsModule,
-      this._aboutModule,
-      this._profileModule,
-      this._branchesModule,
-      this._subscriptionsModule,
-      this._myNotificationsModule,
-      this._bidOrdersModule, {super.key});
+      this._authorizationModule     ,);
 
   @override
   State<StatefulWidget> createState() => _MyAppState();
@@ -152,45 +115,19 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    lang = widget._localizationService.getLanguage();
-    activeTheme = widget._themeDataService.getActiveTheme();
+ 
     timeago.setDefaultLocale(lang);
     Moment.setLocaleGlobally(lang == 'en' ? LocaleEn() : LocaleAr());
-    widget._fireNotificationService.init();
-    widget._localNotificationService.init();
-    widget._localizationService.localizationStream.listen((event) {
-      timeago.setDefaultLocale(event);
-      Moment.setLocaleGlobally(event == 'en' ? LocaleEn() : LocaleAr());
-      lang = event;
-      setState(() {});
-    });
-    widget._fireNotificationService.onNotificationStream.listen((event) {
-      widget._localNotificationService.showNotification(event);
-    });
-    widget._localNotificationService.onLocalNotificationStream.listen((event) {
-      NotificationModel notificationModel = NotificationModel.fromJson(event);
-      if (notificationModel.navigateRoute == ChatRoutes.chatRoute) {
-        Navigator.pushNamed(GlobalVariable.navState.currentContext!,
-            notificationModel.navigateRoute ?? '',
-            arguments: ChatArgument(
-                roomID: notificationModel.chatNotification?.roomID ?? '',
-                userID: notificationModel.chatNotification?.senderID,
-                userType: 'store'));
-      } else {
-        Navigator.pushNamed(GlobalVariable.navState.currentContext!,
-            notificationModel.navigateRoute ?? '',
-            arguments: notificationModel.argument);
-      }
-    });
+
+
+  
+  
     getIt<GlobalStateManager>().stateStream.listen((event) {
       if (mounted) {
         setState(() {});
       }
     });
-    widget._themeDataService.darkModeStream.listen((event) {
-      activeTheme = event;
-      setState(() {});
-    });
+  
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
     checkForUpdates(context);
     });

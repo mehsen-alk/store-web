@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 import 'package:progressive_image/progressive_image.dart';
-import 'package:c4d/consts/urls.dart';
-import 'package:c4d/utils/images/images.dart';
+import 'package:store_web/consts/urls.dart';
+import 'package:store_web/utils/images/images.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final double height;

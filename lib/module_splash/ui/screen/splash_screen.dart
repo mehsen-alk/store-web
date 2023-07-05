@@ -1,25 +1,29 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'dart:io';
-import 'package:c4d/generated/l10n.dart';
-import 'package:c4d/utils/components/custom_alert_dialog.dart';
+import 'package:store_web/generated/l10n.dart';
+import 'package:store_web/module_localization/service/localization_service/localization_service.dart';
+import 'package:store_web/module_main/main_routes.dart';
+import 'package:store_web/utils/components/custom_alert_dialog.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:c4d/module_about/about_routes.dart';
-import 'package:c4d/module_about/hive/about_hive_helper.dart';
-import 'package:c4d/module_auth/presistance/auth_prefs_helper.dart';
-import 'package:c4d/utils/images/images.dart';
-import 'package:c4d/utils/logger/logger.dart';
+// import 'package:store_web/module_about/about_routes.dart';
+// import 'package:store_web/module_about/hive/about_hive_helper.dart';
+import 'package:store_web/module_auth/presistance/auth_prefs_helper.dart';
+import 'package:store_web/utils/images/images.dart';
+import 'package:store_web/utils/logger/logger.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
-import 'package:c4d/di/di_config.dart';
-import 'package:c4d/module_auth/authorization_routes.dart';
-import 'package:c4d/module_auth/service/auth_service/auth_service.dart';
+import 'package:store_web/di/di_config.dart';
+import 'package:store_web/module_auth/authorization_routes.dart';
+import 'package:store_web/module_auth/service/auth_service/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:c4d/module_localization/service/localization_service/localization_service.dart';
-import 'package:c4d/module_settings/setting_routes.dart';
+// import 'package:store_web/module_localization/service/localization_service/localization_service.dart';
+// import 'package:store_web/module_settings/setting_routes.dart';
 
 @injectable
 class SplashScreen extends StatefulWidget {
   final AuthService _authService;
-  const SplashScreen(this._authService, {super.key});
+  const SplashScreen(this._authService);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -120,7 +124,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (getIt<LocalizationService>().languageHasBeenChosen()) {
         return needForLogging(widget._authService.isLoggedIn);
       } else {
-        return SettingRoutes.CHOOSE_LANGUAGE;
+        return MainRoutes.MAIN_SCREEN;
       }
     } catch (e) {
       return AuthorizationRoutes.LOGIN_SCREEN;
@@ -135,10 +139,8 @@ class _SplashScreenState extends State<SplashScreen> {
           await getIt<AuthService>().accountStatus();
           return AuthPrefsHelper().getAccountStatusPhase();
         } catch (e) {
-          return AuthorizationRoutes.REGISTER_SCREEN;
+          return AuthorizationRoutes.LOGIN_SCREEN;
         }
-      } else if (AboutHiveHelper().getWelcome()) {
-        return AuthorizationRoutes.REGISTER_SCREEN;
       } else {
         return welcomePage();
       }
@@ -148,6 +150,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   String welcomePage() {
-    return AboutRoutes.ROUTE_ABOUT;
+    return AuthorizationRoutes.LOGIN_SCREEN;
   }
 }

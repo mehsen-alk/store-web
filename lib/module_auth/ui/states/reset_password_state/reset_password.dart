@@ -1,13 +1,13 @@
-import 'package:c4d/module_auth/ui/screen/reset_password_screen/reset_password_screen.dart';
+import 'package:store_web/module_auth/ui/screen/reset_password_screen/reset_password_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:c4d/abstracts/states/state.dart';
-import 'package:c4d/di/di_config.dart';
-import 'package:c4d/generated/l10n.dart';
-import 'package:c4d/module_auth/request/forget_password_request/update_password_request.dart';
-import 'package:c4d/module_auth/service/auth_service/auth_service.dart';
-import 'package:c4d/module_auth/ui/widget/login_widgets/custom_field.dart';
-import 'package:c4d/utils/helpers/custom_flushbar.dart';
-import 'package:c4d/utils/images/images.dart';
+import 'package:store_web/abstracts/states/state.dart';
+import 'package:store_web/di/di_config.dart';
+import 'package:store_web/generated/l10n.dart';
+import 'package:store_web/module_auth/request/forget_password_request/update_password_request.dart';
+import 'package:store_web/module_auth/service/auth_service/auth_service.dart';
+import 'package:store_web/module_auth/ui/widget/login_widgets/custom_field.dart';
+import 'package:store_web/utils/helpers/custom_flushbar.dart';
+import 'package:store_web/utils/images/images.dart';
 
 class ResetPasswordLoadedState extends States {
   ResetPasswordScreenState screenState;

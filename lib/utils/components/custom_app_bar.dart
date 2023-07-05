@@ -1,7 +1,7 @@
-import 'package:c4d/di/di_config.dart';
-import 'package:c4d/module_theme/pressistance/theme_preferences_helper.dart';
+import 'package:store_web/di/di_config.dart';
+import 'package:store_web/module_theme/pressistance/theme_preferences_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:c4d/utils/global/screen_type.dart';
+import 'package:store_web/utils/global/screen_type.dart';
 
 class CustomC4dAppBar {
   static PreferredSizeWidget appBar(

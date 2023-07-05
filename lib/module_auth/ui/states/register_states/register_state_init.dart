@@ -1,15 +1,14 @@
-import 'package:c4d/generated/l10n.dart';
-import 'package:c4d/module_auth/authorization_routes.dart';
-import 'package:c4d/module_auth/request/register_request/register_request.dart';
-import 'package:c4d/module_auth/ui/screen/register_screen/register_screen.dart';
-import 'package:c4d/module_auth/ui/states/register_states/register_state.dart';
-import 'package:c4d/module_auth/ui/widget/custom_auth_filed.dart';
-import 'package:c4d/module_settings/setting_routes.dart';
+import 'package:store_web/generated/l10n.dart';
+import 'package:store_web/module_auth/authorization_routes.dart';
+import 'package:store_web/module_auth/request/register_request/register_request.dart';
+import 'package:store_web/module_auth/ui/screen/register_screen/register_screen.dart';
+import 'package:store_web/module_auth/ui/states/register_states/register_state.dart';
+import 'package:store_web/module_auth/ui/widget/custom_auth_filed.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:c4d/utils/components/auth_buttons.dart';
-import 'package:c4d/utils/effect/hidder.dart';
-import 'package:c4d/utils/helpers/custom_flushbar.dart';
+import 'package:store_web/utils/components/auth_buttons.dart';
+import 'package:store_web/utils/effect/hidder.dart';
+import 'package:store_web/utils/helpers/custom_flushbar.dart';
 
 class RegisterStateInit extends RegisterState {
   RegisterScreenState screenState;
@@ -105,8 +104,7 @@ class RegisterStateInit extends RegisterState {
                               text: S.current.terms,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Navigator.of(context)
-                                      .pushNamed(SettingRoutes.TERMS);
+                                  
                                 },
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -117,8 +115,7 @@ class RegisterStateInit extends RegisterState {
                             TextSpan(
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Navigator.of(context)
-                                      .pushNamed(SettingRoutes.PRIVECY);
+                                  
                                 },
                               text: S.current.privacy,
                               style: const TextStyle(

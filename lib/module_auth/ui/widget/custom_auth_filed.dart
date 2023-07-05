@@ -1,4 +1,4 @@
-import 'package:c4d/generated/l10n.dart';
+import 'package:store_web/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class CustomAuthFiled extends StatefulWidget {

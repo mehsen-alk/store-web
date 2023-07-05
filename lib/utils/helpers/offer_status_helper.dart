@@ -1,6 +1,6 @@
-import 'package:c4d/consts/offer_status.dart';
+import 'package:store_web/consts/offer_status.dart';
 import 'package:flutter/material.dart';
-import 'package:c4d/generated/l10n.dart';
+import 'package:store_web/generated/l10n.dart';
 
 class OfferStatusHelper {
   static Color getOfferStatusColor(OfferStatusEnum status) {

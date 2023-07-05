@@ -1,23 +1,24 @@
+
 import 'dart:async';
-import 'package:c4d/module_orders/orders_routes.dart';
-import 'package:c4d/utils/components/custom_app_bar.dart';
-import 'package:c4d/utils/images/images.dart';
+import 'package:store_web/module_main/main_routes.dart';
+import 'package:store_web/utils/components/custom_app_bar.dart';
+import 'package:store_web/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:c4d/abstracts/states/state.dart';
-import 'package:c4d/generated/l10n.dart';
-import 'package:c4d/module_auth/request/forget_password_request/update_password_request.dart';
-import 'package:c4d/module_auth/request/forget_password_request/verify_new_password_request.dart';
-import 'package:c4d/module_auth/state_manager/forget_state_manager/forget_password_state_manager.dart';
-import 'package:c4d/module_auth/ui/states/forget_password_state/forget_password_code_sent.dart';
-import 'package:c4d/utils/components/fixed_container.dart';
-import 'package:c4d/utils/helpers/custom_flushbar.dart';
+import 'package:store_web/abstracts/states/state.dart';
+import 'package:store_web/generated/l10n.dart';
+import 'package:store_web/module_auth/request/forget_password_request/update_password_request.dart';
+import 'package:store_web/module_auth/request/forget_password_request/verify_new_password_request.dart';
+import 'package:store_web/module_auth/state_manager/forget_state_manager/forget_password_state_manager.dart';
+import 'package:store_web/module_auth/ui/states/forget_password_state/forget_password_code_sent.dart';
+import 'package:store_web/utils/components/fixed_container.dart';
+import 'package:store_web/utils/helpers/custom_flushbar.dart';
 
 @injectable
 class ForgotPassScreen extends StatefulWidget {
   final ForgotPassStateManager _stateManager;
 
-  const ForgotPassScreen(this._stateManager, {super.key});
+  const ForgotPassScreen(this._stateManager);
 
   @override
   ForgotPassScreenState createState() => ForgotPassScreenState();
@@ -113,7 +114,7 @@ class ForgotPassScreenState extends State<ForgotPassScreen> {
 
   void moveToLogin() {
     Navigator.of(context).pushNamedAndRemoveUntil(
-        OrdersRoutes.OWNER_ORDERS_SCREEN, (route) => false);
+        MainRoutes.MAIN_SCREEN, (route) => false);
     CustomFlushBarHelper.createSuccess(
             title: S.current.warnning,
             message: S.current.passwordUpdatedSuccess)

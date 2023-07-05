@@ -1,9 +1,9 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:c4d/generated/l10n.dart';
-import 'package:c4d/utils/components/fixed_container.dart';
-import 'package:c4d/utils/images/images.dart';
+import 'package:store_web/generated/l10n.dart';
+import 'package:store_web/utils/components/fixed_container.dart';
+import 'package:store_web/utils/images/images.dart';
 
 class ErrorStateWidget extends StatelessWidget {
   final String? error;

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:c4d/generated/l10n.dart';
+import 'package:store_web/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';

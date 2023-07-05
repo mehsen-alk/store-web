@@ -1,5 +1,5 @@
-import 'package:c4d/consts/balance_status.dart';
-import 'package:c4d/generated/l10n.dart';
+import 'package:store_web/consts/balance_status.dart';
+import 'package:store_web/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class SubscriptionsStatusHelper {

@@ -1,5 +1,5 @@
-import 'package:c4d/utils/effect/scaling.dart';
-import 'package:c4d/utils/images/images.dart';
+import 'package:store_web/utils/effect/scaling.dart';
+import 'package:store_web/utils/images/images.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

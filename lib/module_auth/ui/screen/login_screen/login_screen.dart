@@ -1,28 +1,28 @@
 import 'dart:async';
-import 'package:c4d/module_auth/presistance/auth_prefs_helper.dart';
-import 'package:c4d/module_auth/request/register_request/verfy_code_request.dart';
-import 'package:c4d/utils/components/custom_app_bar.dart';
-import 'package:c4d/utils/images/images.dart';
+import 'package:store_web/module_auth/presistance/auth_prefs_helper.dart';
+import 'package:store_web/module_auth/request/register_request/verfy_code_request.dart';
+import 'package:store_web/utils/components/custom_app_bar.dart';
+import 'package:store_web/utils/images/images.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:injectable/injectable.dart';
-import 'package:c4d/di/di_config.dart';
-import 'package:c4d/generated/l10n.dart';
-import 'package:c4d/module_auth/authorization_routes.dart';
-import 'package:c4d/module_auth/request/forget_password_request/reset_password_request.dart';
-import 'package:c4d/module_auth/service/auth_service/auth_service.dart';
-import 'package:c4d/module_auth/state_manager/login_state_manager/login_state_manager.dart';
-import 'package:c4d/module_auth/ui/states/login_states/login_state.dart';
-import 'package:c4d/module_auth/ui/states/login_states/login_state_init.dart';
+import 'package:store_web/di/di_config.dart';
+import 'package:store_web/generated/l10n.dart';
+import 'package:store_web/module_auth/authorization_routes.dart';
+import 'package:store_web/module_auth/request/forget_password_request/reset_password_request.dart';
+import 'package:store_web/module_auth/service/auth_service/auth_service.dart';
+import 'package:store_web/module_auth/state_manager/login_state_manager/login_state_manager.dart';
+import 'package:store_web/module_auth/ui/states/login_states/login_state.dart';
+import 'package:store_web/module_auth/ui/states/login_states/login_state_init.dart';
 import 'package:flutter/material.dart';
-import 'package:c4d/module_splash/splash_routes.dart';
-import 'package:c4d/utils/helpers/custom_flushbar.dart';
+import 'package:store_web/module_splash/splash_routes.dart';
+import 'package:store_web/utils/helpers/custom_flushbar.dart';
 import 'package:the_country_number/the_country_number.dart';
 
 @injectable
 class LoginScreen extends StatefulWidget {
   final LoginStateManager _stateManager;
 
-  const LoginScreen(this._stateManager, {super.key});
+  const LoginScreen(this._stateManager);
 
   @override
   LoginScreenState createState() => LoginScreenState();

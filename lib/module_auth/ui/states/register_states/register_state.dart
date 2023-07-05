@@ -1,4 +1,4 @@
-import 'package:c4d/module_auth/ui/screen/register_screen/register_screen.dart';
+import 'package:store_web/module_auth/ui/screen/register_screen/register_screen.dart';
 import 'package:flutter/material.dart';
 
 abstract class RegisterState {

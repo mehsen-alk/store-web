@@ -1,9 +1,9 @@
-import 'package:c4d/generated/l10n.dart';
-import 'package:c4d/utils/components/custom_app_bar.dart';
-import 'package:c4d/utils/components/custom_feild.dart';
-import 'package:c4d/utils/components/custom_list_view.dart';
-import 'package:c4d/utils/components/progresive_image.dart';
-import 'package:c4d/utils/images/images.dart';
+import 'package:store_web/generated/l10n.dart';
+import 'package:store_web/utils/components/custom_app_bar.dart';
+import 'package:store_web/utils/components/custom_feild.dart';
+import 'package:store_web/utils/components/custom_list_view.dart';
+import 'package:store_web/utils/components/progresive_image.dart';
+import 'package:store_web/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';

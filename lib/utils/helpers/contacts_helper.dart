@@ -1,5 +1,5 @@
-import 'package:c4d/generated/l10n.dart';
-import 'package:c4d/utils/components/custom_feild.dart';
+import 'package:store_web/generated/l10n.dart';
+import 'package:store_web/utils/components/custom_feild.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 

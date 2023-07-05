@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:c4d/generated/l10n.dart';
+import 'package:store_web/generated/l10n.dart';
 
 class CustomLoginAppBar extends StatelessWidget {
   const CustomLoginAppBar({super.key});

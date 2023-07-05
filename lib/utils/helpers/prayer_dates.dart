@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:c4d/di/di_config.dart';
-import 'package:c4d/generated/l10n.dart';
-import 'package:c4d/module_network/http_client/http_client.dart';
+import 'package:store_web/di/di_config.dart';
+import 'package:store_web/generated/l10n.dart';
+import 'package:store_web/module_network/http_client/http_client.dart';
 import 'package:dio/dio.dart';
 
 class PrayerDate {

@@ -1,6 +1,6 @@
 import 'package:store_web/abstracts/data_model/data_model.dart';
-import 'package:store_web/module_branches/branches_routes.dart';
-import 'package:store_web/module_orders/orders_routes.dart';
+import 'package:store_web/module_main/main_routes.dart';
+
 import 'package:store_web/utils/response/action_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:store_web/generated/l10n.dart';
@@ -257,45 +257,15 @@ class AuthService {
       switch (response?.statusCode) {
         // account  subscript with free plan
         case '9161':
-          _prefsHelper.setUserCompetedProfile(OrdersRoutes.OWNER_ORDERS_SCREEN);
-
-          break;
-        // account didn't created any branch
-        case '9159':
-          _prefsHelper.setUserCompetedProfile(BranchesRoutes.INIT_BRANCHES);
-          break;
-        // account not filled
-        case '9158':
-          _prefsHelper.setUserCompetedProfile(BranchesRoutes.INIT_BRANCHES);
-          // not used after refactoring 6/14/2023
-          // _prefsHelper.setUserCompetedProfile(ProfileRoutes.INIT_ACCOUNT);
-          break;
-        // account deleted
-        case '9013':
-          await logout();
-          _prefsHelper.setUserCompetedProfile('userDeleted');
-          break;
-        // account  created
-        case '9160':
-          _prefsHelper.setUserCompetedProfile(OrdersRoutes.OWNER_ORDERS_SCREEN);
-          break;
-
-        // new account haven't subscribe with free plan yet
-        case '9162':
-          _prefsHelper.setNewAccount(true);
-          _prefsHelper.setOpenWelcomeDialogWithoutPayment(
-              response?.data['openingSubscriptionWithoutPayment'] as bool? ??
-                  false);
-          _prefsHelper.setUserCompetedProfile(OrdersRoutes.OWNER_ORDERS_SCREEN);
-          break;
+          _prefsHelper.setUserCompetedProfile(MainRoutes.MAIN_SCREEN);
 
         default:
-          _prefsHelper.setUserCompetedProfile(OrdersRoutes.OWNER_ORDERS_SCREEN);
+          _prefsHelper.setUserCompetedProfile(MainRoutes.MAIN_SCREEN);
           break;
       }
       return;
     }
-    _prefsHelper.setUserCompetedProfile(OrdersRoutes.OWNER_ORDERS_SCREEN);
+    _prefsHelper.setUserCompetedProfile(MainRoutes.MAIN_SCREEN);
     return;
   }
 

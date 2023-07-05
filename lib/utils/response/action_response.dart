@@ -1,4 +1,4 @@
-import 'package:c4d/utils/logger/logger.dart';
+import 'package:store_web/utils/logger/logger.dart';
 
 class ActionResponse {
   String? statusCode;

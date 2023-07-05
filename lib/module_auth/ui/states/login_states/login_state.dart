@@ -1,4 +1,4 @@
-import 'package:c4d/module_auth/ui/screen/login_screen/login_screen.dart';
+import 'package:store_web/module_auth/ui/screen/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
 abstract class LoginState {

@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:firebase_performance_dio/firebase_performance_dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:c4d/di/di_config.dart';
-import 'package:c4d/module_localization/service/localization_service/localization_service.dart';
-import 'package:c4d/utils/logger/logger.dart';
+import 'package:store_web/di/di_config.dart';
+import 'package:store_web/module_localization/service/localization_service/localization_service.dart';
+import 'package:store_web/utils/logger/logger.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 @injectable
