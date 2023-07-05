@@ -10,8 +10,13 @@ class Urls {
   static const String DOMAIN = devDomain;
   static const String BASE_API = '$DOMAIN/v1/store';
   static const String BASE_API_USER = '$DOMAIN/v1/user';
+  static const String VERSION = '/v1';
+  static const String BASE_API_STORE = DOMAIN + VERSION + '/admin';
+
   static const String IMAGES_ROOT =
       'https://c4d-media.s3.eu-central-1.amazonaws.com' '/upload/';
+  static const DELETE_STORE =
+      BASE_API_STORE + '/storeowner/deletestoreownerprofilebyadmin';
   static const UPLOAD_API = '$DOMAIN/uploadfile';
   static const UPLOAD_PDF_API = '$DOMAIN/uploadpdffile';
   static const SIGN_UP_API = '$BASE_API/storeownerregister';
@@ -48,8 +53,7 @@ class Urls {
   static const CAPTAIN_ACCEPTED_ORDERS_API = '$BASE_API/getAcceptedOrder';
   static const ACCEPT_ORDER_API = '$BASE_API/acceptedOrder';
   static const CAPTAIN_ORDER_UPDATE_API = '$BASE_API/orderUpdateState';
-  static const ORDER_UPDATE_BILL_API =
-      '$BASE_API/orderUpdateInvoiceByCaptain';
+  static const ORDER_UPDATE_BILL_API = '$BASE_API/orderUpdateInvoiceByCaptain';
   static const UPDATES_API = '$BASE_API/updateall';
   static const ORDER_BY_ID = '$BASE_API/orderStatus/';
   static const SEND_TO_RECORD = '$BASE_API/record';
@@ -79,8 +83,7 @@ class Urls {
   static const CREATE_PAYMENTS_FOR_STORE =
       '$BASE_API/deliverycompanypaymentstostore';
   static const DELETE_PAYMENTS_FOR_STORE = '$BASE_API/paymenttostore';
-  static const CREATE_SUB_CATEGORIES =
-      '$BASE_API/storeproductcategorylevelone';
+  static const CREATE_SUB_CATEGORIES = '$BASE_API/storeproductcategorylevelone';
   static const GET_PRODUCTS_CATEGORY = '$BASE_API/storeProductsCategory/';
   static const GET_SUBCATEGORIES_LEVEL_ONE =
       '$BASE_API/storeproductscategorylevelonefroadmin';
@@ -112,8 +115,7 @@ class Urls {
   static const PAYMENTS_TO_DISTRO =
       '$BASE_API/deliverycompanypaymenttorepresentative';
   static const DELETE_PAYMENTS_TO_CAPTAIN = '$BASE_API/paymenttocaptain';
-  static const DELETE_PAYMENTS_TO_DISTRO =
-      '$BASE_API/paymenttorepresentative';
+  static const DELETE_PAYMENTS_TO_DISTRO = '$BASE_API/paymenttorepresentative';
   static const PAYMENTS_LIST = '$BASE_API/electronicpaymentinfo';
   static const GET_CAPTAIN_PROFILE = '$BASE_API/captainProfile/';
   static const GET_DISTRO_PROFILE = '$BASE_API/representativeprofile/';
@@ -147,24 +149,20 @@ class Urls {
       '$BASE_API/representativefinancialaccountinspecificdateforadmin/';
   static const GET_UNFINISHED_PAYMENT =
       '$BASE_API/captainsremainingforitamount';
-  static const GET_REMAINING_PAYMENT =
-      '$BASE_API/captainsremainingonitamount';
+  static const GET_REMAINING_PAYMENT = '$BASE_API/captainsremainingonitamount';
   static const GET_REMAINING_PAYMENT_TO_DISTRO =
       '$BASE_API/representativeremainigforitamount';
   static const GET_PENDING_ORDER = '$BASE_API/getpendingorders';
-  static const GET_WITHOUT_PENDING_ORDER =
-      '$BASE_API/getOrdersWithOutPending ';
+  static const GET_WITHOUT_PENDING_ORDER = '$BASE_API/getOrdersWithOutPending ';
   static const GET_ONGOING_ORDERS = '$BASE_API/getordersongoing';
-  static const GET_SPECIFIC_DATE_ORDERS =
-      '$BASE_API/getordersinspecificdate/';
+  static const GET_SPECIFIC_DATE_ORDERS = '$BASE_API/getordersinspecificdate/';
   static const GET_ORDER_DETAILS = '$BASE_API/orderdetailsforadmin/';
   static const GET_ORDER_TIMELINE = '$BASE_API/orderlogstimeline/';
   static const GET_CAPTAINS_REPORT =
       '$BASE_API/countorderseverycaptaininlastmonth';
   static const GET_CAPTAINS_REPORT_SPECIFIC =
       '$BASE_API/countorderseverycaptaininspecificdate';
-  static const GET_STORES_REPORT =
-      '$BASE_API/countOrdersEveryStoreInLastMonth';
+  static const GET_STORES_REPORT = '$BASE_API/countOrdersEveryStoreInLastMonth';
   static const GET_STORES_REPORT_SPECIFIC =
       '$BASE_API/countorderseverystoreinspecificdate';
   static const GET_CLIENTS_REPORT =
