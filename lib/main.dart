@@ -64,7 +64,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  late String lang;
+  late String lang = 'ar';
   late ThemeData activeTheme;
   bool authorized = false;
   @override
@@ -129,7 +129,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        theme: activeTheme,
+        // theme: activeTheme,
         supportedLocales: S.delegate.supportedLocales,
         title: 'C4d',
         routes: fullRoutesList,

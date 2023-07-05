@@ -1,6 +1,5 @@
 // ignore_for_file: use_key_in_widget_constructors
 
-import 'dart:io';
 import 'package:store_web/generated/l10n.dart';
 import 'package:store_web/module_localization/service/localization_service/localization_service.dart';
 import 'package:store_web/module_main/main_routes.dart';
@@ -59,9 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    if (Platform.isAndroid) {
-      _createNewChannel();
-    }
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       someChecks();
     });
