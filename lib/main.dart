@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 import 'package:store_web/global_nav_key.dart';
+import 'package:store_web/module_main/main_module.dart';
 import 'package:store_web/utils/effect/scroll_behavior.dart';
 import 'package:store_web/utils/global/global_state_manager.dart';
 import 'package:simple_moment/simple_moment.dart';
@@ -53,10 +54,12 @@ void main() async {
 class MyApp extends StatefulWidget {
   final SplashModule _splashModule;
   final AuthorizationModule _authorizationModule;
+  final MainModule _mainModule;
 
   const MyApp(
     this._splashModule,
     this._authorizationModule,
+    this._mainModule,
   );
 
   @override
