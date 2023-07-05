@@ -1,12 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors
 
-import 'package:store_web/generated/l10n.dart';
-import 'package:store_web/module_localization/service/localization_service/localization_service.dart';
-import 'package:store_web/module_main/main_routes.dart';
-import 'package:store_web/utils/components/custom_alert_dialog.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
-// import 'package:store_web/module_about/about_routes.dart';
-// import 'package:store_web/module_about/hive/about_hive_helper.dart';
+
 import 'package:store_web/module_auth/presistance/auth_prefs_helper.dart';
 import 'package:store_web/utils/images/images.dart';
 import 'package:store_web/utils/logger/logger.dart';
@@ -16,8 +10,6 @@ import 'package:store_web/di/di_config.dart';
 import 'package:store_web/module_auth/authorization_routes.dart';
 import 'package:store_web/module_auth/service/auth_service/auth_service.dart';
 import 'package:flutter/material.dart';
-// import 'package:store_web/module_localization/service/localization_service/localization_service.dart';
-// import 'package:store_web/module_settings/setting_routes.dart';
 
 @injectable
 class SplashScreen extends StatefulWidget {
@@ -30,35 +22,13 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   Future<void> someChecks() async {
-    bool result = await InternetConnectionChecker().hasConnection;
-
-    if (result) {
-      _getNextRoute().then((route) {
-        Navigator.of(context).pushNamedAndRemoveUntil(route, (route) => false);
-      });
-    } else {
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (ctx) {
-          return CustomAlertDialog(
-            forceQuit: true,
-            primaryButton: S.current.tryAgain,
-            onPressed: () {
-              Navigator.of(context).pop();
-              someChecks();
-            },
-            title: S.current.warnning,
-            content: S.current.pleaseCheckYourInternetConnection,
-          );
-        },
-      );
-    }
+    _getNextRoute().then((route) {
+      Navigator.of(context).pushNamedAndRemoveUntil(route, (route) => false);
+    });
   }
 
   @override
   void initState() {
-
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       someChecks();
     });
@@ -118,11 +88,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<String> _getNextRoute() async {
     try {
-      if (getIt<LocalizationService>().languageHasBeenChosen()) {
         return needForLogging(widget._authService.isLoggedIn);
-      } else {
-        return MainRoutes.MAIN_SCREEN;
-      }
+      
     } catch (e) {
       return AuthorizationRoutes.LOGIN_SCREEN;
     }
