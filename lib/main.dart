@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:io' as p;
 
-import 'package:device_info/device_info.dart';
 import 'package:injectable/injectable.dart';
 import 'package:store_web/global_nav_key.dart';
 import 'package:store_web/utils/effect/scroll_behavior.dart';
@@ -13,9 +11,7 @@ import 'package:store_web/hive/hive_init.dart';
 import 'package:store_web/module_auth/authoriazation_module.dart';
 
 import 'package:store_web/module_splash/splash_module.dart';
-import 'package:store_web/module_theme/service/theme_service/theme_service.dart';
 import 'package:store_web/utils/logger/logger.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -24,28 +20,17 @@ import 'module_splash/splash_routes.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:lehttp_overrides/lehttp_overrides.dart';
 import 'package:new_version_plus/new_version_plus.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   timeago.setLocaleMessages('ar', timeago.ArMessages());
   timeago.setLocaleMessages('en', timeago.EnMessages());
-  if (!kIsWeb) {
-    if (p.Platform.isAndroid) {
-      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      if (androidInfo.version.sdkInt < 26) {
-        p.HttpOverrides.global = LEHttpOverrides();
-      }
-    }
-  }
+  if (!kIsWeb) {}
   await HiveSetUp.init();
-  await Firebase.initializeApp();
   if (kIsWeb) {
   } else {
-    FlutterError.onError = (FlutterErrorDetails details) {
-    };
+    FlutterError.onError = (FlutterErrorDetails details) {};
   }
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -66,21 +51,19 @@ void main() async {
 
 @injectable
 class MyApp extends StatefulWidget {
-
   final SplashModule _splashModule;
   final AuthorizationModule _authorizationModule;
 
   const MyApp(
- 
-      this._splashModule,
-      this._authorizationModule     ,);
+    this._splashModule,
+    this._authorizationModule,
+  );
 
   @override
   State<StatefulWidget> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-
   late String lang;
   late ThemeData activeTheme;
   bool authorized = false;
@@ -109,21 +92,18 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
- 
+
     timeago.setDefaultLocale(lang);
     Moment.setLocaleGlobally(lang == 'en' ? LocaleEn() : LocaleAr());
 
-
-  
-  
     getIt<GlobalStateManager>().stateStream.listen((event) {
       if (mounted) {
         setState(() {});
       }
     });
-  
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    checkForUpdates(context);
+      checkForUpdates(context);
     });
   }
 

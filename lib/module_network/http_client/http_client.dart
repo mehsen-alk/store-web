@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:firebase_performance_dio/firebase_performance_dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:store_web/di/di_config.dart';
 import 'package:store_web/module_localization/service/localization_service/localization_service.dart';
@@ -11,8 +10,6 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 class ApiClient {
   final Logger _logger;
   final String tag = 'ApiClient';
-
-  final performanceInterceptor = DioFirebasePerformanceInterceptor();
 
   ApiClient(this._logger);
 
@@ -30,9 +27,7 @@ class ApiClient {
         receiveTimeout: 60000,
         connectTimeout: 60000,
       ));
-      if (!kIsWeb) {
-        client.interceptors.add(performanceInterceptor);
-      }
+      if (!kIsWeb) {}
       if (headers != null) {
         if (headers['Authorization'] != null) {
           _logger.info(tag, 'Adding Auth Header');
@@ -91,9 +86,7 @@ class ApiClient {
         }
       }
       // client.options.headers['Access-Control-Allow-Origin'] = '*';
-      if (!kIsWeb) {
-        client.interceptors.add(performanceInterceptor);
-      }
+      if (!kIsWeb) {}
       var response = await client.post(
         url,
         queryParameters: queryParams,
@@ -117,6 +110,7 @@ class ApiClient {
         return {'status_code': '-1'};
       }
     }
+    return null;
   }
 
   Future<Map<String, dynamic>?> put(
@@ -142,9 +136,7 @@ class ApiClient {
         }
       }
       //  client.options.headers['Access-Control-Allow-Origin'] = '*';
-      if (!kIsWeb) {
-        client.interceptors.add(performanceInterceptor);
-      }
+      if (!kIsWeb) {}
       var response = await client.put(
         url,
         queryParameters: queryParams,
@@ -185,9 +177,7 @@ class ApiClient {
         receiveTimeout: 60000,
         connectTimeout: 60000,
       ));
-      if (!kIsWeb) {
-        client.interceptors.add(performanceInterceptor);
-      }
+      if (!kIsWeb) {}
       if (headers != null) {
         if (headers['Authorization'] != null) {
           _logger.info(tag, 'Adding Auth Header');

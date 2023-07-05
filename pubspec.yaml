@@ -62,7 +62,6 @@ dependencies:
   share: ^2.0.4
   # Network Agent
   dio: ^4.0.0
-  firebase_performance_dio: ^0.4.1
   # Analyzer
   analyzer_plugin: ^0.11.2
   # Time Ago Generator
