@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:store_web/module_localization/repository/main_repository.dart';
+import 'package:store_web/module_main/repository/main_repository.dart';
 import 'package:store_web/module_main/response/login_response/login_response.dart';
 import 'package:store_web/module_main/response/profile_response/profile_response.dart';
 import 'package:store_web/utils/response/action_response.dart';

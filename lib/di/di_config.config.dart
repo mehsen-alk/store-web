@@ -34,7 +34,7 @@ import '../module_auth/ui/screen/reset_password_screen/reset_password_screen.dar
     as _i29;
 import '../module_localization/presistance/localization_preferences_helper/localization_preferences_helper.dart'
     as _i5;
-import '../module_localization/repository/main_repository.dart' as _i19;
+import '../module_main/repository/main_repository.dart' as _i19;
 import '../module_localization/service/localization_service/localization_service.dart'
     as _i6;
 import '../module_main/main_module.dart' as _i33;
