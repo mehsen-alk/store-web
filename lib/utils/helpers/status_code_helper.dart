@@ -50,7 +50,7 @@ class StatusCodeHelper {
       case '9305':
         return S.current.alreadyExtended;
       case '9351':
-        return S.current.packageNotFoundRenew;
+        return S.current.accountHasOrdersRecord;
       case '9454':
         return S.current.youSubscribedWithOffer;
       case '9453':

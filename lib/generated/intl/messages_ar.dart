@@ -54,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountBalance": MessageLookupByLibrary.simpleMessage("الحساب المالي"),
         "accountCreated":
             MessageLookupByLibrary.simpleMessage("تم ارسال الطلب"),
+        "accountHasOrdersRecord": MessageLookupByLibrary.simpleMessage(
+            "لا يمكن حذف الحساب لوجود سجل طلبات"),
         "accountInActivated":
             MessageLookupByLibrary.simpleMessage("الحساب غير مفعل"),
         "accountNotExist":

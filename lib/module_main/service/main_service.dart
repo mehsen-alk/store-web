@@ -3,7 +3,9 @@ import 'package:store_web/generated/l10n.dart';
 import 'package:store_web/module_main/manager/main_manager.dart';
 import 'package:injectable/injectable.dart';
 import 'package:store_web/module_main/model/profile_model/profile_model.dart';
+import 'package:store_web/module_main/model/store_profile_model.dart';
 import 'package:store_web/module_main/response/profile_response/profile_response.dart';
+import 'package:store_web/module_main/response/store_profile_response.dart';
 import 'package:store_web/utils/helpers/status_code_helper.dart';
 import 'package:store_web/utils/response/action_response.dart';
 
@@ -52,5 +54,19 @@ class MainService {
     ProfileModel profile = ProfileModel.withData(response);
 
     return profile;
+  }
+
+  Future<DataModel> getStoreProfile(int id, String adminToken) async {
+    StoreProfileResponse? _storeResponse =
+        await _manager.getStoreProfile(id, adminToken);
+    if (_storeResponse == null) {
+      return DataModel.withError(S.current.networkError);
+    }
+    if (_storeResponse.statusCode != '200') {
+      return DataModel.withError(
+          StatusCodeHelper.getStatusCodeMessages(_storeResponse.statusCode));
+    }
+    if (_storeResponse.data == null) return DataModel.empty();
+    return StoreProfileModel.withData(_storeResponse.data!);
   }
 }

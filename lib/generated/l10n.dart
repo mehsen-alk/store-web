@@ -7489,6 +7489,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Account has order records`
+  String get accountHasOrdersRecord {
+    return Intl.message(
+      'Account has order records',
+      name: 'accountHasOrdersRecord',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -6,6 +6,7 @@ import 'package:store_web/abstracts/states/state.dart';
 import 'package:store_web/generated/l10n.dart';
 import 'package:store_web/module_auth/authorization_routes.dart';
 import 'package:store_web/module_main/model/profile_model/profile_model.dart';
+import 'package:store_web/module_main/model/store_profile_model.dart';
 import 'package:store_web/module_main/service/main_service.dart';
 import 'package:store_web/module_main/ui/screen/main_screen.dart';
 import 'package:store_web/module_main/ui/states/main_state_loaded.dart';
@@ -45,23 +46,39 @@ class MainStateManager {
                 ).show(screenState.context);
                 _stateSubject.add(MainStateLoaded(screenState));
               } else {
-                _mainService.deleteStore(profile.id, adminToken).then(
+                _mainService.getStoreProfile(profile.id, adminToken).then(
                   (value) {
-                    if (value.hasError) {
-                      _stateSubject.add(MainStateLoaded(screenState));
+                    if (value.hasError || value.isEmpty) {
                       CustomFlushBarHelper.createError(
                         title: S.current.warnning,
                         message: S.current.errorHappened,
                       ).show(screenState.context);
+                      _stateSubject.add(MainStateLoaded(screenState));
                     } else {
-                      CustomFlushBarHelper.createSuccess(
-                        title: S.current.warnning,
-                        message: S.current.userDeleted,
-                      ).show(screenState.context);
-                      Navigator.pushNamedAndRemoveUntil(
-                        screenState.context,
-                        AuthorizationRoutes.LOGIN_SCREEN,
-                        (route) => false,
+                      value as StoreProfileModel;
+                      var storeProfile = value.data;
+                      _mainService
+                          .deleteStore(storeProfile.storeId, adminToken)
+                          .then(
+                        (value) {
+                          if (value.hasError) {
+                            _stateSubject.add(MainStateLoaded(screenState));
+                            CustomFlushBarHelper.createError(
+                              title: S.current.warnning,
+                              message: value.error ?? S.current.errorHappened,
+                            ).show(screenState.context);
+                          } else {
+                            CustomFlushBarHelper.createSuccess(
+                              title: S.current.warnning,
+                              message: S.current.userDeleted,
+                            ).show(screenState.context);
+                            Navigator.pushNamedAndRemoveUntil(
+                              screenState.context,
+                              AuthorizationRoutes.LOGIN_SCREEN,
+                              (route) => false,
+                            );
+                          }
+                        },
                       );
                     }
                   },

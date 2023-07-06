@@ -34,11 +34,11 @@ import '../module_auth/ui/screen/reset_password_screen/reset_password_screen.dar
     as _i29;
 import '../module_localization/presistance/localization_preferences_helper/localization_preferences_helper.dart'
     as _i5;
-import '../module_main/repository/main_repository.dart' as _i19;
 import '../module_localization/service/localization_service/localization_service.dart'
     as _i6;
 import '../module_main/main_module.dart' as _i33;
 import '../module_main/manager/main_manager.dart' as _i25;
+import '../module_main/repository/main_repository.dart' as _i19;
 import '../module_main/service/main_service.dart' as _i26;
 import '../module_main/state_manager/main_state_manager.dart' as _i27;
 import '../module_main/ui/screen/main_screen.dart' as _i32;

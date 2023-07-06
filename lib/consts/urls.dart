@@ -79,6 +79,8 @@ class Urls {
   static const GET_STORES_INACTIVE = '$BASE_API/storesinactive';
   static const GET_STORES_INACTIVE_FILTER = '$BASE_API/storesinactivefilter/';
   static const GET_STORE_PROFILE = '$BASE_API/storeownerprofilebyid/';
+  static const GET_STORE_PROFILE_FOR_ADMIN =
+      BASE_API_STORE + '/storeowner/storeownerprofilebyidforadmin/';
   static const CREATE_STORES = '$BASE_API/storeownercreatbyadmin';
   static const CREATE_PAYMENTS_FOR_STORE =
       '$BASE_API/deliverycompanypaymentstostore';
