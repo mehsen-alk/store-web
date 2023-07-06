@@ -45,14 +45,6 @@ class AuthButtons extends StatelessWidget {
                           )
                         : Text(
                             firstButtonTitle,
-                            style: TextStyle(
-                              color: firstButtonTab != null
-                                  ? Theme.of(context)
-                                      .textTheme
-                                      .labelLarge
-                                      ?.color
-                                  : Theme.of(context).disabledColor,
-                            ),
                           ),
                   )),
             ),

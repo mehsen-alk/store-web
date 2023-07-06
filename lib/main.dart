@@ -137,7 +137,18 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         title: 'C4d',
         routes: fullRoutesList,
         initialRoute: SplashRoutes.SPLASH_SCREEN,
+        theme: ThemeData.light().copyWith(
+          colorScheme: ColorScheme.fromSeed(
+            primary: Color(0xff03816A),
+            seedColor: PrimaryColor,
+            background: Color.fromRGBO(236, 239, 241, 1),
+          ),
+        ),
       ),
     );
+  }
+
+  static Color get PrimaryColor {
+    return Color.fromRGBO(33, 32, 156, 1);
   }
 }

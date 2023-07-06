@@ -28,7 +28,7 @@ class MainRepository {
     var token = adminToken;
     dynamic response = await _apiClient.delete(Urls.DELETE_STORE,
         payLoad: {'storeOwnerId': storeId},
-        headers: {'Authorization': 'Bearer ' + token.toString()});
+        headers: {'Authorization': 'Bearer ' + token});
     if (response == null) return null;
     return ActionResponse.fromJson(response);
   }

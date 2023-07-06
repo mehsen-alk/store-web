@@ -15,27 +15,23 @@ class MainService {
     this._manager,
   );
 
-  Future<String?> getAdminToken({int? r}) async {
+  Future<String?> getAdminToken() async {
     var res = await _manager.getAdminToken();
-    if (r == null) r = 0;
-    if (res?.statusCode != '200' && r < 3) {
-      return getAdminToken(r: r++);
-    }
+
     return res?.token;
   }
 
-  Future<DataModel> deleteStore(int storeID, String adminToken,
-      {int? r}) async {
+  Future<DataModel> deleteStore(
+    int storeID,
+    String adminToken,
+  ) async {
     ActionResponse? actionResponse =
         await _manager.deleteStore(storeID, adminToken);
-    if (r == null) r = 0;
 
     if (actionResponse == null) {
-      if (r < 3) return deleteStore(storeID, adminToken, r: r++);
       return DataModel.withError(S.current.networkError);
     }
     if (actionResponse.statusCode != '401') {
-      if (r < 3) return deleteStore(storeID, adminToken, r: r++);
       return DataModel.withError(
           StatusCodeHelper.getStatusCodeMessages(actionResponse.statusCode));
     }

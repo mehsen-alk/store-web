@@ -12,8 +12,8 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../main.dart' as _i30;
-import '../module_auth/authoriazation_module.dart' as _i29;
+import '../main.dart' as _i34;
+import '../module_auth/authoriazation_module.dart' as _i31;
 import '../module_auth/manager/auth_manager/auth_manager.dart' as _i14;
 import '../module_auth/presistance/auth_prefs_helper.dart' as _i3;
 import '../module_auth/repository/auth/auth_repository.dart' as _i12;
@@ -29,17 +29,21 @@ import '../module_auth/state_manager/reset_state_manager/reset_password_state_ma
 import '../module_auth/ui/screen/forget_password_screen/forget_password_screen.dart'
     as _i23;
 import '../module_auth/ui/screen/login_screen/login_screen.dart' as _i24;
-import '../module_auth/ui/screen/register_screen/register_screen.dart' as _i26;
+import '../module_auth/ui/screen/register_screen/register_screen.dart' as _i28;
 import '../module_auth/ui/screen/reset_password_screen/reset_password_screen.dart'
-    as _i27;
+    as _i29;
 import '../module_localization/presistance/localization_preferences_helper/localization_preferences_helper.dart'
     as _i5;
+import '../module_localization/repository/main_repository.dart' as _i19;
 import '../module_localization/service/localization_service/localization_service.dart'
     as _i6;
-import '../module_main/main_module.dart' as _i25;
-import '../module_main/ui/screen/main_screen.dart' as _i19;
+import '../module_main/main_module.dart' as _i33;
+import '../module_main/manager/main_manager.dart' as _i25;
+import '../module_main/service/main_service.dart' as _i26;
+import '../module_main/state_manager/main_state_manager.dart' as _i27;
+import '../module_main/ui/screen/main_screen.dart' as _i32;
 import '../module_network/http_client/http_client.dart' as _i10;
-import '../module_splash/splash_module.dart' as _i28;
+import '../module_splash/splash_module.dart' as _i30;
 import '../module_splash/ui/screen/splash_screen.dart' as _i22;
 import '../module_theme/pressistance/theme_preferences_helper.dart' as _i8;
 import '../module_theme/service/theme_service/theme_service.dart' as _i11;
@@ -94,8 +98,10 @@ _i1.GetIt $initGetIt(
       () => _i17.ImageUploadService(gh<_i13.UploadManager>()));
   gh.factory<_i18.LoginStateManager>(
       () => _i18.LoginStateManager(gh<_i15.AuthService>()));
-  gh.factory<_i19.MainScreen>(
-      () => _i19.MainScreen(gh<_i18.LoginStateManager>()));
+  gh.factory<_i19.MainRepository>(() => _i19.MainRepository(
+        gh<_i10.ApiClient>(),
+        gh<_i15.AuthService>(),
+      ));
   gh.factory<_i20.RegisterStateManager>(
       () => _i20.RegisterStateManager(gh<_i15.AuthService>()));
   gh.factory<_i21.ResetPasswordStateManager>(
@@ -106,23 +112,30 @@ _i1.GetIt $initGetIt(
       () => _i23.ForgotPassScreen(gh<_i16.ForgotPassStateManager>()));
   gh.factory<_i24.LoginScreen>(
       () => _i24.LoginScreen(gh<_i18.LoginStateManager>()));
-  gh.factory<_i25.MainModule>(() => _i25.MainModule(gh<_i19.MainScreen>()));
-  gh.factory<_i26.RegisterScreen>(
-      () => _i26.RegisterScreen(gh<_i20.RegisterStateManager>()));
-  gh.factory<_i27.ResetPasswordScreen>(
-      () => _i27.ResetPasswordScreen(gh<_i21.ResetPasswordStateManager>()));
-  gh.factory<_i28.SplashModule>(
-      () => _i28.SplashModule(gh<_i22.SplashScreen>()));
-  gh.factory<_i29.AuthorizationModule>(() => _i29.AuthorizationModule(
+  gh.factory<_i25.MainManager>(
+      () => _i25.MainManager(gh<_i19.MainRepository>()));
+  gh.factory<_i26.MainService>(() => _i26.MainService(gh<_i25.MainManager>()));
+  gh.factory<_i27.MainStateManager>(
+      () => _i27.MainStateManager(gh<_i26.MainService>()));
+  gh.factory<_i28.RegisterScreen>(
+      () => _i28.RegisterScreen(gh<_i20.RegisterStateManager>()));
+  gh.factory<_i29.ResetPasswordScreen>(
+      () => _i29.ResetPasswordScreen(gh<_i21.ResetPasswordStateManager>()));
+  gh.factory<_i30.SplashModule>(
+      () => _i30.SplashModule(gh<_i22.SplashScreen>()));
+  gh.factory<_i31.AuthorizationModule>(() => _i31.AuthorizationModule(
         gh<_i24.LoginScreen>(),
-        gh<_i26.RegisterScreen>(),
-        gh<_i27.ResetPasswordScreen>(),
+        gh<_i28.RegisterScreen>(),
+        gh<_i29.ResetPasswordScreen>(),
         gh<_i23.ForgotPassScreen>(),
       ));
-  gh.factory<_i30.MyApp>(() => _i30.MyApp(
-        gh<_i28.SplashModule>(),
-        gh<_i29.AuthorizationModule>(),
-        gh<_i25.MainModule>(),
+  gh.factory<_i32.MainScreen>(
+      () => _i32.MainScreen(gh<_i27.MainStateManager>()));
+  gh.factory<_i33.MainModule>(() => _i33.MainModule(gh<_i32.MainScreen>()));
+  gh.factory<_i34.MyApp>(() => _i34.MyApp(
+        gh<_i30.SplashModule>(),
+        gh<_i31.AuthorizationModule>(),
+        gh<_i33.MainModule>(),
       ));
   return getIt;
 }

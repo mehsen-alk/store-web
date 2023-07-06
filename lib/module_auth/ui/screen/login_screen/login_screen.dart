@@ -76,7 +76,7 @@ class LoginScreenState extends State<LoginScreen> {
         }
       },
       child: Stack(
-        fit: StackFit.expand,
+        fit: StackFit.passthrough,
         children: [
           Positioned.fill(
             child: Container(
@@ -87,11 +87,11 @@ class LoginScreenState extends State<LoginScreen> {
             ImageAsset.AUTH_BACKGROUND,
             fit: BoxFit.fill,
           ),
-          SizedBox(
-            width: 200,
-            child: Scaffold(
-              floatingActionButton: Visibility(
-                visible: AuthPrefsHelper().savedUsersCredential().isNotEmpty,
+          Scaffold(
+            floatingActionButton: Visibility(
+              visible: AuthPrefsHelper().savedUsersCredential().isNotEmpty,
+              child: Container(
+                constraints: BoxConstraints(maxWidth: 500),
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 0),
                   child: FloatingActionButton(
@@ -181,24 +181,24 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              appBar: CustomC4dAppBar.appBar(
-                context,
-                canGoBack: canPop,
-                backgroundColor: Colors.transparent,
-              ),
-              backgroundColor: Colors.transparent,
-              body: loadingSnapshot.connectionState != ConnectionState.waiting
-                  ? _currentStates.getUI(context)
-                  : Stack(
-                      children: [
-                        _currentStates.getUI(context),
-                        Container(
-                          width: double.maxFinite,
-                          color: Colors.transparent.withOpacity(0.0),
-                        ),
-                      ],
-                    ),
             ),
+            appBar: CustomC4dAppBar.appBar(
+              context,
+              canGoBack: canPop,
+              backgroundColor: Colors.transparent,
+            ),
+            backgroundColor: Colors.transparent,
+            body: loadingSnapshot.connectionState != ConnectionState.waiting
+                ? _currentStates.getUI(context)
+                : Stack(
+                    children: [
+                      _currentStates.getUI(context),
+                      Container(
+                        width: double.maxFinite,
+                        color: Colors.transparent.withOpacity(0.0),
+                      ),
+                    ],
+                  ),
           ),
         ],
       ),

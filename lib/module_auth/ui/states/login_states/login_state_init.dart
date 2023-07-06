@@ -1,10 +1,8 @@
 import 'package:store_web/generated/l10n.dart';
 import 'package:store_web/module_auth/authorization_routes.dart';
-import 'package:store_web/module_auth/request/forget_password_request/reset_password_request.dart';
 import 'package:store_web/module_auth/ui/screen/login_screen/login_screen.dart';
 import 'package:store_web/module_auth/ui/states/login_states/login_state.dart';
 import 'package:store_web/module_auth/ui/widget/custom_auth_filed.dart';
-import 'package:store_web/utils/components/custom_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:store_web/utils/components/auth_buttons.dart';
 import 'package:store_web/utils/helpers/custom_flushbar.dart';
@@ -73,57 +71,10 @@ class LoginStateInit extends LoginState {
                   screen: screen,
                   isLastFiled: true,
                 ),
-
-                CheckboxListTile(
-                    title: Text(S.current.rememberMe),
-                    value: screen.rememberMe,
-                    onChanged: (check) {
-                      screen.rememberMe = check ?? false;
-                      screen.refresh();
-                    }),
                 const SizedBox(
                   height: 16,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    width: 75,
-                    child: Center(
-                      child: InkWell(
-                        onTap: () {
-                          FocusScope.of(context).unfocus();
-                          if (screen.usernameController.text.isNotEmpty) {
-                            showDialog(
-                                context: context,
-                                builder: (_) {
-                                  return CustomAlertDialog(
-                                      content: S.of(context).informSendCode,
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                        screen.restPass(ResetPassRequest(
-                                            userID:
-                                                screen.countryController.text +
-                                                    screen.usernameController
-                                                        .text));
-                                      });
-                                });
-                          } else {
-                            CustomFlushBarHelper.createError(
-                              title: S.current.warnning,
-                              message: S.current.pleaseInputPhoneNumber,
-                            ).show(context);
-                          }
-                        },
-                        child: Text(
-                          S.of(context).forgotPass,
-                          style: TextStyle(
-                              color: Theme.of(context).disabledColor,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+
                 const SizedBox(
                   height: 50,
                 ),
@@ -164,7 +115,8 @@ class LoginStateInit extends LoginState {
 class Password extends StatefulWidget {
   final bool isLastFiled;
 
-  const Password({super.key, 
+  const Password({
+    super.key,
     required this.screen,
     this.isLastFiled = false,
   });

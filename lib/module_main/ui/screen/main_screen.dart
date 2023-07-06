@@ -1,15 +1,14 @@
-import 'dart:async';
 import 'package:store_web/abstracts/states/state.dart';
+import 'package:store_web/module_main/state_manager/main_state_manager.dart';
 import 'package:store_web/module_main/ui/states/main_state_loaded.dart';
 import 'package:store_web/utils/components/custom_app_bar.dart';
 import 'package:store_web/utils/images/images.dart';
 import 'package:injectable/injectable.dart';
-import 'package:store_web/module_auth/state_manager/login_state_manager/login_state_manager.dart';
 import 'package:flutter/material.dart';
 
 @injectable
 class MainScreen extends StatefulWidget {
-  final LoginStateManager _stateManager;
+  final MainStateManager _stateManager;
 
   const MainScreen(this._stateManager);
 
@@ -19,42 +18,21 @@ class MainScreen extends StatefulWidget {
 
 class MainScreenState extends State<MainScreen> {
   late States _currentStates;
-  late AsyncSnapshot loadingSnapshot;
-  late StreamSubscription _stateSubscription;
-  bool deepLinkChecked = false;
-  bool rememberMe = false;
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController countryController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    _currentStates = MainStateLoaded(this);
+    super.initState();
+  }
+
   void refresh() {
     if (mounted) setState(() {});
   }
 
-  late bool canPop;
-  @override
-  void initState() {
-    canPop = Navigator.of(context).canPop();
-    loadingSnapshot = const AsyncSnapshot.nothing();
-    _currentStates = MainStateLoaded(this);
-
-    // _stateSubscription = widget._stateManager.stateStream.listen((event) {
-    //   if (mounted) {
-    //     setState(() {
-    //       _currentStates = event;
-    //     });
-    //   }
-    // });
-    // widget._stateManager.loadingStream.listen((event) {
-    //   if (mounted) {
-    //     setState(() {
-    //       loadingSnapshot = event;
-    //     });
-    //   }
-    // });
-    super.initState();
+  void deleteStore() {
+    widget._stateManager.deleteStore(this);
   }
 
-  dynamic args;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -76,36 +54,17 @@ class MainScreenState extends State<MainScreen> {
             ImageAsset.AUTH_BACKGROUND,
             fit: BoxFit.fill,
           ),
-          SizedBox(
-            width: 200,
-            child: Scaffold(
-              appBar: CustomC4dAppBar.appBar(
-                context,
-                canGoBack: canPop,
-                backgroundColor: Colors.transparent,
-              ),
+          Scaffold(
+            appBar: CustomC4dAppBar.appBar(
+              context,
+              canGoBack: false,
               backgroundColor: Colors.transparent,
-              body: loadingSnapshot.connectionState != ConnectionState.waiting
-                  ? _currentStates.getUI(context)
-                  : Stack(
-                      children: [
-                        _currentStates.getUI(context),
-                        Container(
-                          width: double.maxFinite,
-                          color: Colors.transparent.withOpacity(0.0),
-                        ),
-                      ],
-                    ),
             ),
+            backgroundColor: Colors.transparent,
+            body: _currentStates.getUI(context),
           ),
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _stateSubscription.cancel();
-    super.dispose();
   }
 }
